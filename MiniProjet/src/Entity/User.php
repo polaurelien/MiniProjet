@@ -45,9 +45,15 @@ class User
      */
     private $Crypto;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="Auteur", orphanRemoval=true)
+     */
+    private $commentaire;
+
     public function __construct()
     {
         $this->Crypto = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,5 +155,35 @@ class User
     public function isAdmin(): bool
     {
         return ($this->role == "Admin");
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getAuteur() === $this) {
+                $commentaire->setAuteur(null);
+            }
+        }
+
+        return $this;
     }
 }

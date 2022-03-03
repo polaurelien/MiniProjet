@@ -25,3 +25,12 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+?>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Crypto Folly</title>
+</head>
+<body>
+
+</body>

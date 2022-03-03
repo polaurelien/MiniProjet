@@ -54,9 +54,15 @@ class Crypto
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="Crypto", orphanRemoval=true)
+     */
+    private $commentaire;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +164,36 @@ class Crypto
     {
         if ($this->users->removeElement($user)) {
             $user->removeCrypto($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setCrypto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getCrypto() === $this) {
+                $commentaire->setCrypto(null);
+            }
         }
 
         return $this;
