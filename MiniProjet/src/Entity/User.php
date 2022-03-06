@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -36,11 +36,6 @@ class User
     private $mail;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $role;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Crypto::class, inversedBy="users")
      */
     private $Crypto;
@@ -49,6 +44,26 @@ class User
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="Auteur", orphanRemoval=true)
      */
     private $commentaire;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Roles;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Salt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Username;
 
     public function __construct()
     {
@@ -96,19 +111,6 @@ class User
 
         return $this;
     }
-
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
 
 
     /**
@@ -193,4 +195,56 @@ class User
     }
 
 
+    public function getRoles()
+    {
+        return $this->role;
+    }
+
+    public function getPassword()
+    {
+        return $this->Password;
+    }
+
+    public function getSalt()
+    {
+        return $this->Salt;
+    }
+
+    public function getUsername()
+    {
+        return $this->Username;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function setPassword(string $Password): self
+    {
+        $this->Password = $Password;
+
+        return $this;
+    }
+
+    public function setRoles(string $Roles): self
+    {
+        $this->Roles = $Roles;
+
+        return $this;
+    }
+
+    public function setSalt(?string $Salt): self
+    {
+        $this->Salt = $Salt;
+
+        return $this;
+    }
+
+    public function setUsername(string $Username): self
+    {
+        $this->Username = $Username;
+
+        return $this;
+    }
 }
