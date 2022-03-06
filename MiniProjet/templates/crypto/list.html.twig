@@ -10,7 +10,8 @@
 <ul>
     {%  for cryp in liste %}
         <li>{{ cryp.nom }}</li>
-
+        <a href="{{ path('crypto.edit', {id : cryp.id}) }}">Editer</a>
+        <a href="{{ path('crypto.delete', {id : cryp.id}) }}">Supprimer</a>
     {% endfor %}
 </ul>
 <div class="example-wrapper">
