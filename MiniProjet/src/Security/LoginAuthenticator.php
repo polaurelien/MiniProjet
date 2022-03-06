@@ -72,6 +72,8 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         return $user;
+
+
     }
 
     public function checkCredentials($credentials, UserInterface $user)
@@ -80,9 +82,19 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
         $checkU = $this->entityManager->getRepository(User::class)->findOneBy(['Username' => $credentials['Username']]);
 
         if (!$checkU) {
-            throw new UsernameNotFoundException('Username could not be found.');
+            throw new UsernameNotFoundException('Incorrect Username.');
         }
 
+        $checkP = $this->entityManager->getRepository(User::class)->findOneBy(['Password' => $credentials['password']]);
+
+        if (!$checkP) {
+            throw new UsernameNotFoundException('Incorrect password.');
+
+        }
+
+        if ($checkP && $checkU){
+            return true;
+        }
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
