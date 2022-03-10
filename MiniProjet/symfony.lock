@@ -100,6 +100,12 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.7"
     },
+    "knplabs/knp-components": {
+        "version": "v2.5.1"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.3.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -575,6 +581,12 @@
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
+    },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.4"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.5"
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"

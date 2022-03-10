@@ -7,9 +7,19 @@ use App\Entity\Crypto;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class AppFixtures extends Fixture
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
+
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -39,11 +49,11 @@ class AppFixtures extends Fixture
         $p4->setUsername("jbart");
         $p5->setUsername("schamson");
 
-        $p1->setPassword(sha1("pdupont"));
-        $p2->setPassword(sha1("slahaye"));
-        $p3->setPassword(sha1("pnecker"));
-        $p4->setPassword(sha1("jbart"));
-        $p5->setPassword(sha1("schamson"));
+        $p1->setPassword($this->passwordEncoder->encodePassword($p1, "pdupont"));
+        $p2->setPassword($this->passwordEncoder->encodePassword($p2, "slahaye"));
+        $p3->setPassword($this->passwordEncoder->encodePassword($p3, "pnecker"));
+        $p4->setPassword($this->passwordEncoder->encodePassword($p4, "jbart"));
+        $p5->setPassword($this->passwordEncoder->encodePassword($p5, "schamson"));
 
         $p1->setMail("pdupont@cryp.fr");
         $p2->setMail("slahaye@cryp.fr");

@@ -53,11 +53,6 @@ class User implements UserInterface
     private $Password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Roles;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Salt;
@@ -66,6 +61,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $Username;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -146,19 +146,19 @@ class User implements UserInterface
      */
     public function setAdmin(): self
     {
-        $this->role = "Admin";
+        $this->Roles = "Admin";
         return $this;
     }
 
     public function setUser(): self
     {
-        $this->role = "User";
+        $this->Roles = "User";
         return $this;
     }
 
     public function isAdmin(): bool
     {
-        return ($this->role == "Admin");
+        return ($this->Roles == "Admin");
     }
 
     /**
@@ -197,11 +197,6 @@ class User implements UserInterface
     }
 
 
-    public function getRoles()
-    {
-        return $this->role;
-    }
-
     public function getPassword()
     {
         return $this->Password;
@@ -229,13 +224,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function setRoles(string $Roles): self
-    {
-        $this->Roles = $Roles;
-
-        return $this;
-    }
-
     public function setSalt(?string $Salt): self
     {
         $this->Salt = $Salt;
@@ -246,6 +234,18 @@ class User implements UserInterface
     public function setUsername(string $Username): self
     {
         $this->Username = $Username;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(string $roles): self
+    {
+        $this->roles[] = $roles;
 
         return $this;
     }
