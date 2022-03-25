@@ -37,35 +37,29 @@ class AppFixtures extends Fixture
         $p4->setNom("BART");
         $p5->setNom("CHAMSON");
 
-        $p1->setPrenom("Pierre");
+        $p1->setPrenom("Charles");
         $p2->setPrenom("Sylvie");
         $p3->setPrenom("Pauline");
         $p4->setPrenom("Jean");
         $p5->setPrenom("Samuel");
 
-        $p1->setUsername("pdupont");
+        $p1->setUsername("cdupont");
         $p2->setUsername("slahaye");
         $p3->setUsername("pnecker");
         $p4->setUsername("jbart");
         $p5->setUsername("schamson");
 
-        $p1->setPassword($this->passwordEncoder->encodePassword($p1, "pdupont"));
+        $p1->setPassword($this->passwordEncoder->encodePassword($p1, "cdupont"));
         $p2->setPassword($this->passwordEncoder->encodePassword($p2, "slahaye"));
         $p3->setPassword($this->passwordEncoder->encodePassword($p3, "pnecker"));
         $p4->setPassword($this->passwordEncoder->encodePassword($p4, "jbart"));
         $p5->setPassword($this->passwordEncoder->encodePassword($p5, "schamson"));
 
-        $p1->setMail("pdupont@cryp.fr");
-        $p2->setMail("slahaye@cryp.fr");
-        $p3->setMail("pnecker@cryp.fr");
-        $p4->setMail("jbart@cryp.fr");
-        $p5->setMail("schamson@cryp.fr");
-
-        $p1->setRoles("User");
-        $p2->setRoles("User");
-        $p3->setRoles("User");
-        $p4->setRoles("Admin");
-        $p5->setRoles("User");
+        $p1->setRoles(["ROLE_USER"]);
+        $p2->setRoles(["ROLE_USER"]);
+        $p3->setRoles(["ROLE_USER"]);
+        $p4->setRoles(["ROLE_USER","ROLE_ADMIN"]);
+        $p5->setRoles(["ROLE_USER"]);
 
         $manager->persist($p1);
         $manager->persist($p2);

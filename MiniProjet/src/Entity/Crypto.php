@@ -50,19 +50,20 @@ class Crypto
     private $qteMax;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="Crypto")
-     */
-    private $users;
-
-    /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="Crypto", orphanRemoval=true)
      */
     private $commentaire;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="cryptos")
+     */
+    private $listeUsers;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        //$this->listeUsers = new ArrayCollection();
         $this->commentaire = new ArrayCollection();
+        $this->listeUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -207,6 +208,33 @@ class Crypto
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getListeUsers(): Collection
+    {
+        return $this->listeUsers;
+    }
+
+    public function addListeUser(User $listeUser): self
+    {
+        if (!$this->listeUsers->contains($listeUser)) {
+            $this->listeUsers[] = $listeUser;
+            $listeUser->addCrypto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListeUser(User $listeUser): self
+    {
+        if ($this->listeUsers->removeElement($listeUser)) {
+            $listeUser->removeCrypto($this);
+        }
+
+        return $this;
     }
 
 }
