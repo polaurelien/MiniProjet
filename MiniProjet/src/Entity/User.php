@@ -137,6 +137,19 @@ class User implements UserInterface
         return $this->nom;
     }
 
+    public function isAdmin(): ?bool
+    {
+        $rep = false;
+        foreach ($this->roles as $role)
+        {
+            if($role == "ROLE_ADMIN")
+            {
+                $rep = true;
+            }
+        }
+        return $rep;
+    }
+
     public function setNom(string $nom): self
     {
         $this->nom = $nom;

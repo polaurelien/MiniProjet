@@ -6,7 +6,8 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            ﻿<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+            {% include 'css/style.html' %}
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +15,19 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block conn %}
+            <div class="connexion">
+                {% if app.user %}
+                    Vous êtes connectés avec {{ app.user.username }} <br>
+                    <button class="boutonConn" href="{{ path('app_logout') }}">Se déconnecter</button>
+                    <button class="boutonConn" href="{{ path('app_login') }}">Changer de compte</button>
+                {% else %}
+                    Vous n'êtes actuellement pas connectés
+                    <button href="{{ path('app_login')}}">Se connecter</button>
+                {% endif %}
+            </div>
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
     </body>
 </html>

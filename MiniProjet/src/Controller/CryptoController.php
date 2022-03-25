@@ -53,11 +53,22 @@ class CryptoController extends AbstractController
      */
     public function list(EntityManagerInterface $em) : Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getRepository(Crypto::class);
         $liste = $em->findAll();
-        return $this->render('crypto/list.html.twig', [
-            'liste' => $liste,
-        ]);
+        if($user->isAdmin())
+        {
+            return $this->render('crypto/list.html.twig', [
+                'liste' => $liste,
+            ]);
+        }
+        else
+        {
+            return $this->render('crypto/listSec.html.twig', [
+                'liste' => $liste,
+            ]);
+        }
     }
 
     /**
