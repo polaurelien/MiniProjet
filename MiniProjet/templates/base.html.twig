@@ -19,11 +19,11 @@
             <div class="connexion">
                 {% if app.user %}
                     Vous êtes connectés avec {{ app.user.username }} <br>
-                    <button class="boutonConn" href="{{ path('app_logout') }}">Se déconnecter</button>
-                    <button class="boutonConn" href="{{ path('app_login') }}">Changer de compte</button>
+                    <a href="{{ path('app_logout') }}"><button class="boutonConn" >Se déconnecter</button></a>
+                    <a href="{{ path('app_login') }}"><button class="boutonConn" >Changer de compte</button></a>
                 {% else %}
-                    Vous n'êtes actuellement pas connectés
-                    <button href="{{ path('app_login')}}">Se connecter</button>
+                    Vous n'êtes actuellement pas connectés <br>
+                    <a href="{{ path('app_login')}}"><button class="boutonConn">Se connecter</button></a>
                 {% endif %}
             </div>
         {% endblock %}

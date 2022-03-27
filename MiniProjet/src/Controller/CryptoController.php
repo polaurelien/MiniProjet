@@ -57,6 +57,7 @@ class CryptoController extends AbstractController
         $user = $this->getUser();
         $em = $this->getDoctrine()->getRepository(Crypto::class);
         $liste = $em->findAll();
+        //dd($liste);
         if($user->isAdmin())
         {
             return $this->render('crypto/list.html.twig', [

@@ -5,26 +5,40 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<table>
-    <th>NOM</th><th>Date Création</th><th>Quantité Émise</th><th></th><th></th>
-    {%  for cryp in liste %}
-        <tr>
-            <td>
-                {{ cryp.nom }}
-            </td>
-            <td>
-                {{ cryp.dateCrea }}
-            </td>
-            <td>
-                {{ cryp.qteEmise }}
-            </td>
-            <td>
-                <a href="{{ path('crypto.edit', {id : cryp.id}) }}">Editer</a>
-            </td>
-            <td>
-                <a href="{{ path('crypto.delete', {id : cryp.id}) }}">Supprimer</a>
-            </td>
-        </tr>
-    {% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stupidtable/1.1.3/stupidtable.min.js"></script>
+<table id="list">
+    <thead>
+        <th data-sort="string">NOM</th>
+        <th data-sort="string">Date Création</th>
+        <th data-sort="int">Quantité Émise</th>
+        <th></th>
+        <th></th>
+    </thead>
+        {%  for cryp in liste%}
+            <tr>
+                <td>
+                    {{ cryp.nom }}
+                </td>
+                <td>
+                    {{ cryp.dateCreaToString }}
+                </td>
+                <td>
+                    {{ cryp.qteEmise }}
+                </td>
+                <td>
+                    <a href="{{ path('crypto.edit', {id : cryp.id}) }}">Editer</a>
+                </td>
+                <td>
+                    <a href="{{ path('crypto.delete', {id : cryp.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
 </table>
+    <button class="bouton"><a href="{{ path('crypto.create') }}">Ajouter une crypto</a></button>
+    <script>
+        $(document).ready(function($) {
+            $("#list").stupidtable();
+        });
+    </script>
 {% endblock %}

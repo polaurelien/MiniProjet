@@ -83,12 +83,12 @@ class Crypto
         return $this;
     }
 
-    /*public function getDateCrea(): ?\DateTimeInterface
+    public function getDateCrea(): ?\DateTimeInterface
     {
         return $this->dateCrea;
-    }*/
+    }
 
-    public function getDateCrea(): ?string
+    public function getDateCreaToString(): ?string
     {
         return $this->dateCrea->format('Y-m-d');
     }
