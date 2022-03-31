@@ -58,7 +58,7 @@ class CryptoController extends AbstractController
         $em = $this->getDoctrine()->getRepository(Crypto::class);
         $liste = $em->findAll();
         //dd($liste);
-        if($user->isAdmin())
+        if($user->getAdmin())
         {
             return $this->render('crypto/list.html.twig', [
                 'liste' => $liste,
@@ -107,5 +107,17 @@ class CryptoController extends AbstractController
         $em->remove($crypto);
         $em->flush();
         return $this->redirectToRoute('crypto.list');
+    }
+
+    /**
+     * Afficher les détails d'une crypto.
+     * @Route("crypto/{id}/details", name="crypto.details")
+     * @return Response
+     */
+    public function detail($id) : Response
+    {
+        $crypto = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
+        return $this->render('crypto/details.html.twig', [
+            'crypto' => $crypto, ]);
     }
 }

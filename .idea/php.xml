@@ -47,10 +47,8 @@
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/MiniProjet/vendor/laminas/laminas-zendframework-bridge" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/translation-contracts" />
-      <path value="$PROJECT_DIR$/MiniProjet/vendor/laminas/laminas-eventmanager" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/twig-bridge" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/twig-bundle" />
@@ -127,6 +125,13 @@
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/doctrine-bridge" />
       <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/twig/cssinliner-extra" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/MiniProjet/vendor/tijsverkoyen/css-to-inline-styles" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
