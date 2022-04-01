@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Détails de la cryptomonnaie {{ crypto.nom }} : </h1>
+    <div class="media" style="margin-top: 60px;">
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-10">
+
+                </div>
+            </div>
+            <div>
+                <p><b>Equivalent USD :</b> {{ crypto.equiUSD }}</p>
+                <p><b>Crée le :</b> {{ crypto.dateCrea|date('d-m-Y') }}</p>
+                <p><b>Equivalent USD :</b> {{ crypto.equiUSD }}</p>
+                <p><b>Algorithme utilisé :</b> {{ crypto.algo }}</p>
+                <p><b>Quantité émise :</b> {{ crypto.qteEmise }}</p>
+                <p><b>Quantité Max :</b> {{ crypto.qteMax }}</p>
+            </div>
+            <br/><br/><br/><br/>
+            <p>
+                <strong>Les commentaires de la cryptomonnaie : </strong>
+            </p>
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    {% if app.user is not null %}
+                        <a class="btn btn-primary" href=" {{ path('commentaire.ajout', {id: crypto.id}) }}">
+                            Ajouter un commentaire
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <br/>
+            <table class="table text-center">
+                <tr>
+                    <th class="active text-center">Nom</th>
+                    <th class="active text-center">Commentaire</th>
+                    {% if app.user is not null %}
+                        {% if app.user.admin %}
+                            <th class="activate text-center">Supprimer</th>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+
+                {% for commentaire in crypto.Commentaire %}
+                    <tr>
+                        <td>{{ commentaire.Auteur.prenom }}</td>
+                        <td>{{ commentaire.contenu}}</td>
+                        {% if app.user is not null %}
+                            {% if app.user.admin %}
+                                <td><a class = "btn btn-danger" href="{{ path('commentaire.delete', {id: commentaire.id}) }}">
+                                    </a></td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

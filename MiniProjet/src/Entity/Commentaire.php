@@ -34,6 +34,11 @@ class Commentaire
      */
     private $Contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class Commentaire
     public function setContenu(string $Contenu): self
     {
         $this->Contenu = $Contenu;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
